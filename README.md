@@ -61,6 +61,35 @@ or you can set the parameters:
 
 This command will run all the folds on the UCIActivity dataset and store the outputs in the results directory.
 
+### Project Folder Structure
+```plaintext
+.
+├── experiments              # Contains experimental scripts and demos
+│   └── demo.py              # Example demo for running the models
+├── figs                     # 
+│   └── Logo.png             # Project logo
+├── models                   # Includes model definitions
+│   ├── deep_learning        # Deep learning models for time series tasks
+│   │   ├── ConvTran.py      # ConvTran model for time series classification
+│   │   └── FCN.py           # Fully Convolutional Network (FCN) for time series
+│   ├── loss.py              # 
+│   ├── model_factory.py     # 
+│   └── non_deep             # Non-deep learning models
+│       ├── hydra_gpu.py     # 
+│       ├── quant.py         # 
+│       ├── ridge.py         # 
+│       └── utils.py         # 
+├── notebook                 # Jupyter notebooks for analysis and exploration
+├── README.md                # 
+├── requirements.txt         # Required Python dependencies
+├── results                  # Folder for results and outputs
+├── src                      # Source code for data processing and training
+│   ├── analysis.py          # Analysis script for model performance
+│   ├── data_loader.py       # Data loading and preprocessing pipeline
+│   ├── trainer.py           # Model training and evaluation code
+│   └── utils.py             # 
+└── .gitignore               # 
+```
 
 (More to come...)
 
