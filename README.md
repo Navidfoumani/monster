@@ -4,7 +4,7 @@
 
 ***MONSTER: Monash Scalable Time Series Evaluation Repository***
 
-[arXiv:2502.15122](https://arxiv.org/abs/2502.15122) (preprint)  
+Monster Paper (preprint): [arXiv:2502.15122](https://arxiv.org/abs/2502.15122)   
 The datasets are hosted on **Hugging Face** and can be accessed here:
 
 [![Hugging Face](https://img.shields.io/badge/HuggingFace-Datasets-orange?style=for-the-badge&logo=huggingface)](https://huggingface.co/monster-monash)
