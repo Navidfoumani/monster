@@ -22,8 +22,7 @@ def Initialization(args):
                 config: configuration dictionary
     """
 
-    config = args.args.__dict__  # configuration dictionary
-    config['dataset'] = problem
+    config = args.__dict__  # configuration dictionary
     # Create output directory
     initial_timestamp = datetime.now()
     output_dir = config['output_path']
@@ -194,33 +193,3 @@ def readable_time(time_difference):
 
     return hours, minutes, seconds
 
-
-class dataset_class(Dataset):
-
-    def __init__(self, data, label):
-        super(dataset_class, self).__init__()
-
-        self.feature = data
-        self.labels = label.astype(np.int32)
-        # self.__padding__()
-
-    def __padding__(self):
-        origin_len = self.feature[0].shape[1]
-        if origin_len % self.patch_size:
-            padding_len = self.patch_size - (origin_len % self.patch_size)
-            padding = np.zeros((len(self.feature), self.feature[0].shape[0], padding_len), dtype=np.float32)
-            self.feature = np.concatenate([self.feature, padding], axis=-1)
-
-    def __getitem__(self, ind):
-
-        x = self.feature[ind]
-        x = x.astype(np.float32)
-        y = self.labels[ind]  # (num_labels,) array
-
-        data = torch.tensor(x)
-        label = torch.tensor(y)
-
-        return data, label, ind
-
-    def __len__(self):
-        return len(self.labels)

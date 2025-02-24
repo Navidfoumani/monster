@@ -2,7 +2,13 @@ import os
 import csv
 import argparse
 import logging
-from . import utils
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from src.utils import *
+from src.trainer import trainer
+from src.data_loader import load
+
 
 logging.basicConfig(format='%(asctime)s | %(levelname)s : %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -35,7 +41,7 @@ args = parser.parse_args()
 
 
 if __name__ == '__main__':
-    config = utils.Initialization(args)  # configuration dictionary
+    config = Initialization(args)  # configuration dictionary
     # Prepare CSV file for storing metrics
     csv_file_path = os.path.join(config['output_dir'], 'metrics_summary.csv')
     with open(csv_file_path, mode='w', newline='') as file:
@@ -44,7 +50,7 @@ if __name__ == '__main__':
         writer.writerow(['Fold', 'Accuracy', 'Loss', 'Train_time', 'Test_time'])
     for fold in range(5):
         Data = None  # Explicitly empty `Data`
-        Data = data_loader.load(config, fold)
+        Data = load(config, fold)
         config['fold'] = fold
         best_aggr_metrics_test, all_metrics = trainer(config, Data)
         print_str = 'Best Model Test Summary: '

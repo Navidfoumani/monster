@@ -11,10 +11,13 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from collections import OrderedDict
 from tqdm import tqdm
+from src.data_loader import dataset_class
 from models import model_factory
 from models.loss import get_loss_module
+from sklearn.metrics import f1_score, balanced_accuracy_score
 from torch.utils.tensorboard import SummaryWriter
 NEG_METRICS = {'loss'}  # metrics for which "better" is less
+
 
 def trainer(config, Data):
     train_dataset = dataset_class(Data['train_data'], Data['train_label'])
@@ -58,7 +61,6 @@ def trainer(config, Data):
     return best_aggr_metrics_test, all_metrics
 
 
-
 def train_pipeline(config, model, trainer, val_evaluator, optimizer, path):
     epochs = config["epochs"]
     total_start_time = time.time()
@@ -87,7 +89,6 @@ def train_pipeline(config, model, trainer, val_evaluator, optimizer, path):
     total_runtime = time.time() - total_start_time
     logger.info("Train Time: {} hours, {} minutes, {} seconds\n".format(*readable_time(total_runtime)))
     return  total_runtime
-
 
 
 def validate(val_evaluator, tensorboard_writer, config, best_metrics, best_value, epoch):
