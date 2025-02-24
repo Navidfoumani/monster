@@ -1,5 +1,8 @@
+import os
+import csv
 import argparse
 import logging
+from . import utils
 
 logging.basicConfig(format='%(asctime)s | %(levelname)s : %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -9,13 +12,13 @@ parser.add_argument('--dataset', default='UCIActivity', choices={'WhaleSounds'})
 parser.add_argument('--output_path', default='results',
                     help='Root output directory. Must exist. Time-stamped directories will be created inside.')
 parser.add_argument('--Norm', type=bool, default=False, help='Data Normalization')
-parser.add_argument('--val_ratio', type=float, default=0.2, help="Proportion of the train-set to be used as validation")
+parser.add_argument('--val_ratio', type=float, default=0.1, help="Proportion of the train-set to be used as validation")
 parser.add_argument('--print_interval', type=int, default=5, help='Print batch info every this many batches')
 # ------------------------------------- Model Parameter and Hyperparameter ---------------------------------------------
-parser.add_argument('--Training_mode', default='Supervised', choices={'Rep-Learning', 'Initialization', 'Supervised'})
-parser.add_argument('--Model_Type', default=['ConvTran'], choices={'FCN', 'ConvTran', 'TimeCNN'}, help="Model Architecture")
+parser.add_argument('--Training_mode', default='Supervised', choices={'Supervised'})
+parser.add_argument('--Model_Type', default=['ConvTran'], choices={'ConvTran', 'FCN'}, help="Model Architecture")
 # -------------------------------------Training Parameters/ Hyper-Parameters -----------------------------------------
-parser.add_argument('--epochs', type=int, default=10, help='Number of training epochs')
+parser.add_argument('--epochs', type=int, default=100, help='Number of training epochs')
 parser.add_argument('--batch_size', type=int, default=256, help='Training batch size')
 parser.add_argument('--lr', type=float, default=1e-3, help='learning rate')
 parser.add_argument('--dropout', type=float, default=0.01, help='Droupout regularization ratio')
@@ -32,7 +35,7 @@ args = parser.parse_args()
 
 
 if __name__ == '__main__':
-    config = Setup(args)  # configuration dictionary
+    config = utils.Initialization(args)  # configuration dictionary
     # Prepare CSV file for storing metrics
     csv_file_path = os.path.join(config['output_dir'], 'metrics_summary.csv')
     with open(csv_file_path, mode='w', newline='') as file:
