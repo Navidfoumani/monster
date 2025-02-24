@@ -47,6 +47,21 @@ from datasets import load_dataset
 dataset = load_dataset("monster-monash/Pedestrian", "fold_0", trust_remote_code = True)
 ```
 
+## Run
+
+To see all command options with explanations, run: `python experiments/demo.py --help`
+In `experiments.py` you can select the datasets and modify the model parameters.
+For example:
+
+`self.parser.add_argument('--epochs', type=int, default=100, help='Number of training epochs')`
+
+or you can set the parameters:
+
+`python experiments/demo.py --dataset UCIActivity`
+
+This command will run all the folds on the UCIActivity dataset and store the outputs in the results directory.
+
+
 (More to come...)
 
 <div align="center">🦖</div>

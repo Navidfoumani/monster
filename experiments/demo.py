@@ -14,7 +14,7 @@ logging.basicConfig(format='%(asctime)s | %(levelname)s : %(message)s', level=lo
 logger = logging.getLogger(__name__)
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--dataset', default='UCIActivity', choices={'WhaleSounds'})
+parser.add_argument('--dataset', default='UCIActivity', help = "Dataset name")
 parser.add_argument('--output_path', default='results',
                     help='Root output directory. Must exist. Time-stamped directories will be created inside.')
 parser.add_argument('--Norm', type=bool, default=False, help='Data Normalization')
