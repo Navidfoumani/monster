@@ -27,6 +27,8 @@ Please cite as:
 }
 ```
 
+
+
 ## Downloading Data
 
 ### <tt>hf_hub_download</tt>
@@ -90,6 +92,20 @@ This command will run all the folds on the UCIActivity dataset and store the out
 │   └── utils.py             # 
 └── .gitignore               # 
 ```
+
+
+### 📌 Models in the Paper – Coming Soon to the Repository!
+
+Our paper introduces several state-of-the-art time series classification models, and we are in the process of adding them to this repository. Below is the list of models:
+
+✅ **ConvTran** (Added)  
+✅ **FCN** (Added)  
+🛠️ **H-Inception** (Coming Soon)  
+🛠️ **Temp-CNN** (Coming Soon)  
+🛠️ **Hydra** (Coming Soon)  
+🛠️ **Quant** (Coming Soon)  
+
+We will be releasing these models soon—stay tuned! 🚀  
 
 (More to come...)
 
