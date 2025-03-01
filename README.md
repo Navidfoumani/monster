@@ -96,7 +96,7 @@ This command will run all the folds on the UCIActivity dataset and store the out
 
 ### 📌 Models in the Paper – Coming Soon to the Repository!
 
-Our paper introduces several state-of-the-art time series classification models, and we are in the process of adding them to this repository. Below is the list of models:
+Below is the list of models:
 
 ✅ **ConvTran** (Added)  
 ✅ **FCN** (Added)  
