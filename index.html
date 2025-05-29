@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MONSTER: Monash Scalable Time Series Evaluation Repository</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      text-align: center;
+    }
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 6px 10px;
+      border-radius: 5px;
+      display: block;
+      overflow-x: auto;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 400px;
+    }
+    .badge-container {
+      text-align: center;
+      margin: 10px 0 30px;
+    }
+    blockquote {
+      background: #f9f9f9;
+      border-left: 5px solid #ccc;
+      padding: 10px 20px;
+      margin: 20px 0;
+    }
+    .folder-structure {
+      background: #f0f0f0;
+      padding: 10px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="figs/Logo.png" alt="MONSTER Logo" class="logo">
+
+  <h1>MONSTER</h1>
+  <h3><em>MONSTER: Monash Scalable Time Series Evaluation Repository</em></h3>
+
+  <div class="badge-container">
+    <a href="https://arxiv.org/abs/2502.15122">
+      <img src="https://img.shields.io/badge/arXiv-2502.15122-B31B1B?style=for-the-badge&logo=arxiv" alt="arXiv">
+    </a>
+    <a href="https://huggingface.co/monster-monash">
+      <img src="https://img.shields.io/badge/HuggingFace-Datasets-orange?style=for-the-badge&logo=huggingface" alt="Hugging Face">
+    </a>
+  </div>
+
+  <blockquote>
+    We introduce MONSTER—the <strong>MON</strong>ash <strong>S</strong>calable <strong>T</strong>ime Series <strong>E</strong>valuation <strong>R</strong>epository—a collection of large datasets for time series classification.
+    <br><br>
+    The field of time series classification has benefitted from common benchmarks set by the UCR and UEA repositories. However, these datasets are small, with median sizes of 217 and 255 examples, respectively. This favors models that minimize variance over scalability. 
+    <br><br>
+    Our goal is to diversify the field by introducing large-scale benchmarks that encourage development of scalable and practical models for real-world time series challenges.
+  </blockquote>
+
+  <h2>Please cite as:</h2>
+  <pre><code>@article{dempster_etal_2025,
+  author  = {Dempster, Angus and Foumani, Navid Mohammadi and Tan, Chang Wei and Miller, Lynn and Mishra, Amish and Salehi, Mahsa and Pelletier, Charlotte and Schmidt, Daniel F and Webb, Geoffrey I},
+  title   = {MONSTER: Monash Scalable Time Series Evaluation Repository},
+  year    = {2025},
+  journal = {arXiv:2502.15122},
+}</code></pre>
+
+  <h2>Downloading Data</h2>
+
+  <h3><tt>hf_hub_download</tt></h3>
+  <pre><code>from huggingface_hub import hf_hub_download
+
+path = hf_hub_download(repo_id = "monster-monash/Pedestrian", filename = "Pedestrian_X.npy", repo_type = "dataset")
+X = np.load(path, mmap_mode = "r")</code></pre>
+
+  <h3><tt>load_data</tt></h3>
+  <pre><code>from datasets import load_dataset
+
+dataset = load_dataset("monster-monash/Pedestrian", "fold_0", trust_remote_code = True)</code></pre>
+
+  <h2>Run</h2>
+  <p>To see all command options with explanations, run:</p>
+  <code>python experiments/demo.py --help</code>
+
+  <p>Modify model settings in <code>experiments.py</code>. For example:</p>
+  <code>self.parser.add_argument('--epochs', type=int, default=100, help='Number of training epochs')</code>
+
+  <p>To run on a dataset:</p>
+  <code>python experiments/demo.py --dataset UCIActivity</code>
+
+  <h2>Project Folder Structure</h2>
+  <div class="folder-structure">
+.
+├── experiments              # Contains experimental scripts and demos
+│   └── demo.py              # Example demo for running the models
+├── figs                     # 
+│   └── Logo.png             # Project logo
+├── models                   # Includes model definitions
+│   ├── deep_learning        # Deep learning models for time series tasks
+│   │   ├── ConvTran.py      # ConvTran model for time series classification
+│   │   └── FCN.py           # Fully Convolutional Network (FCN) for time series
+│   ├── loss.py              # 
+│   ├── model_factory.py     # 
+│   └── non_deep             # Non-deep learning models
+│       ├── hydra_gpu.py     # 
+│       ├── quant.py         # 
+│       ├── ridge.py         # 
+│       └── utils.py         # 
+├── notebook                 # Jupyter notebooks for analysis and exploration
+├── README.md                # 
+├── requirements.txt         # Required Python dependencies
+├── results                  # Folder for results and outputs
+├── src                      # Source code for data processing and training
+│   ├── analysis.py          # Analysis script for model performance
+│   ├── data_loader.py       # Data loading and preprocessing pipeline
+│   ├── trainer.py           # Model training and evaluation code
+│   └── utils.py             # 
+└── .gitignore               # 
+  </div>
+
+</body>
+</html>
