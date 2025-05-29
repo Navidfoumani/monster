@@ -3,44 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <title>MONSTER: Monash Scalable Time Series Evaluation Repository</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
       max-width: 900px;
       margin: auto;
       padding: 40px 20px;
-      line-height: 1.6;
+      line-height: 1.8;
+      background-color: #fafafa;
+      color: #222;
     }
-    h1, h2, h3 {
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0;
       text-align: center;
+      color: #222;
     }
-    code, pre {
-      background-color: #f4f4f4;
-      padding: 6px 10px;
-      border-radius: 5px;
-      display: block;
-      overflow-x: auto;
+    h3 {
+      font-weight: 400;
+      text-align: center;
+      color: #555;
+      margin-top: 0;
     }
-    .logo {
+    h2 {
+      color: #444;
+      margin-top: 40px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+    img.logo {
       display: block;
-      margin: 0 auto 20px auto;
-      max-width: 400px;
+      margin: 0 auto 30px;
+      max-width: 280px;
     }
     .badge-container {
       text-align: center;
-      margin: 10px 0 30px;
+      margin: 20px 0 40px;
+    }
+    .badge-container a img {
+      margin: 0 10px;
+      transition: transform 0.2s ease;
+    }
+    .badge-container a img:hover {
+      transform: scale(1.05);
     }
     blockquote {
-      background: #f9f9f9;
-      border-left: 5px solid #ccc;
-      padding: 10px 20px;
-      margin: 20px 0;
+      background: #ffffff;
+      border-left: 5px solid #58a;
+      padding: 20px 25px;
+      font-size: 1.05em;
+      margin: 30px 0;
+      color: #333;
+    }
+    code, pre {
+      background-color: #f3f3f3;
+      padding: 10px 15px;
+      border-radius: 6px;
+      display: block;
+      overflow-x: auto;
+      font-size: 0.95em;
+    }
+    pre {
+      margin-top: 10px;
+      margin-bottom: 25px;
     }
     .folder-structure {
-      background: #f0f0f0;
-      padding: 10px;
-      font-family: monospace;
+      background: #f9f9f9;
+      padding: 15px;
+      border-left: 4px solid #ccc;
       white-space: pre-wrap;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      margin-bottom: 40px;
+    }
+    p {
+      margin: 16px 0;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      pre, code { font-size: 0.85em; }
     }
   </style>
 </head>
@@ -49,7 +91,7 @@
   <img src="figs/Logo.png" alt="MONSTER Logo" class="logo">
 
   <h1>MONSTER</h1>
-  <h3><em>MONSTER: Monash Scalable Time Series Evaluation Repository</em></h3>
+  <h3><em>Monash Scalable Time Series Evaluation Repository</em></h3>
 
   <div class="badge-container">
     <a href="https://arxiv.org/abs/2502.15122">
@@ -61,11 +103,9 @@
   </div>
 
   <blockquote>
-    We introduce MONSTER—the <strong>MON</strong>ash <strong>S</strong>calable <strong>T</strong>ime Series <strong>E</strong>valuation <strong>R</strong>epository—a collection of large datasets for time series classification.
+    <strong>MONSTER</strong> is a large-scale benchmark suite for time series classification. While UCR and UEA benchmarks offer common ground, they are limited by small dataset sizes—favoring models that reduce variance over those that scale.
     <br><br>
-    The field of time series classification has benefitted from common benchmarks set by the UCR and UEA repositories. However, these datasets are small, with median sizes of 217 and 255 examples, respectively. This favors models that minimize variance over scalability. 
-    <br><br>
-    Our goal is to diversify the field by introducing large-scale benchmarks that encourage development of scalable and practical models for real-world time series challenges.
+    Our goal is to expand the landscape with datasets that challenge models to be scalable, robust, and practical for real-world time series applications.
   </blockquote>
 
   <h2>Please cite as:</h2>
@@ -90,13 +130,13 @@ X = np.load(path, mmap_mode = "r")</code></pre>
 dataset = load_dataset("monster-monash/Pedestrian", "fold_0", trust_remote_code = True)</code></pre>
 
   <h2>Run</h2>
-  <p>To see all command options with explanations, run:</p>
+  <p>To view all command-line options:</p>
   <code>python experiments/demo.py --help</code>
 
-  <p>Modify model settings in <code>experiments.py</code>. For example:</p>
+  <p>Edit training parameters in <code>experiments.py</code>. For example:</p>
   <code>self.parser.add_argument('--epochs', type=int, default=100, help='Number of training epochs')</code>
 
-  <p>To run on a dataset:</p>
+  <p>To run on a specific dataset:</p>
   <code>python experiments/demo.py --dataset UCIActivity</code>
 
   <h2>Project Folder Structure</h2>
@@ -109,24 +149,24 @@ dataset = load_dataset("monster-monash/Pedestrian", "fold_0", trust_remote_code 
 ├── models                   # Includes model definitions
 │   ├── deep_learning        # Deep learning models for time series tasks
 │   │   ├── ConvTran.py      # ConvTran model for time series classification
-│   │   └── FCN.py           # Fully Convolutional Network (FCN) for time series
-│   ├── loss.py              # 
-│   ├── model_factory.py     # 
+│   │   └── FCN.py           # Fully Convolutional Network (FCN)
+│   ├── loss.py              # Loss functions
+│   ├── model_factory.py     # Model factory for building models
 │   └── non_deep             # Non-deep learning models
-│       ├── hydra_gpu.py     # 
-│       ├── quant.py         # 
-│       ├── ridge.py         # 
-│       └── utils.py         # 
-├── notebook                 # Jupyter notebooks for analysis and exploration
-├── README.md                # 
-├── requirements.txt         # Required Python dependencies
-├── results                  # Folder for results and outputs
-├── src                      # Source code for data processing and training
-│   ├── analysis.py          # Analysis script for model performance
-│   ├── data_loader.py       # Data loading and preprocessing pipeline
-│   ├── trainer.py           # Model training and evaluation code
-│   └── utils.py             # 
-└── .gitignore               # 
+│       ├── hydra_gpu.py     #
+│       ├── quant.py         #
+│       ├── ridge.py         #
+│       └── utils.py         #
+├── notebook                 # Jupyter notebooks
+├── README.md                #
+├── requirements.txt         #
+├── results                  # Outputs and logs
+├── src                      # Source code
+│   ├── analysis.py          #
+│   ├── data_loader.py       #
+│   ├── trainer.py           #
+│   └── utils.py             #
+└── .gitignore               #
   </div>
 
 </body>
