@@ -1,4 +1,4 @@
-<div align="center"><img src="figs/Logo.png" style="width:400px"></div>
+<div align="center"><img src="figs/Logo.png" style="width:500px"></div>
 
 # MONSTER
 
