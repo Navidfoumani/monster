@@ -8,6 +8,10 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2502.15122-B31B1B?style=for-the-badge&logo=arxiv)](https://arxiv.org/abs/2502.15122)
 
+🌐 Project Page
+
+[![Project Page](https://img.shields.io/badge/Project_Page-MONSTER-blue?style=for-the-badge&logo=github)](https://navidfoumani.github.io/monster/)
+
 📊 The datasets are hosted on **Hugging Face** and can be accessed here: 
 
 [![Hugging Face](https://img.shields.io/badge/HuggingFace-Datasets-orange?style=for-the-badge&logo=huggingface)](https://huggingface.co/monster-monash)
